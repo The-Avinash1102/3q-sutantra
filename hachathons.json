@@ -1,0 +1,30 @@
+[
+    {
+        "title": "Tech Innovation Hackathon",
+        "description": "Join developers from around the world to innovate and create solutions for real-world problems.",
+        "date": "2025-05-15",
+        "location": "San Francisco, CA",
+        "image": "https://via.placeholder.com/150"
+    },
+    {
+        "title": "AI & Machine Learning Hackathon",
+        "description": "Collaborate with others to build the next big AI solution. Various workshops and challenges await!",
+        "date": "2025-06-20",
+        "location": "New York, NY",
+        "image": "https://via.placeholder.com/150"
+    },
+    {
+        "title": "Cybersecurity Hackathon",
+        "description": "Test your skills and collaborate with cybersecurity experts to solve critical security challenges.",
+        "date": "2025-07-10",
+        "location": "Chicago, IL",
+        "image": "https://via.placeholder.com/150"
+    },
+    {
+        "title": "Blockchain & Cryptocurrency Hackathon",
+        "description": "Delve into blockchain technology and cryptocurrency innovation with hands-on challenges.",
+        "date": "2025-08-05",
+        "location": "Austin, TX",
+        "image": "https://via.placeholder.com/150"
+    }
+]

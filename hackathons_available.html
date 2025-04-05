@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Hackathons</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card {
+            margin: 15px;
+        }
+        .card-body {
+            text-align: center;
+        }
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .card-text {
+            font-size: 1rem;
+        }
+        .no-hackathons {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #ff0000;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Upcoming Hackathons</h1>
+        
+        <!-- Row for hackathon cards -->
+        <div id="hackathonCards" class="row">
+            <!-- Cards will be inserted here dynamically by JavaScript -->
+        </div>
+
+        <div id="noHackathons" class="no-hackathons" style="display: none;">
+            No hackathons available at the moment.
+        </div>
+    </div>
+
+    <script>
+        // Function to fetch hackathon data from JSON file
+        function fetchHackathons() {
+            fetch('./hackathons.json')  // Fetch the hackathons data from the JSON file
+                .then(response => response.json())  // Parse the JSON response
+                .then(hackathons => {
+                    const hackathonCards = document.getElementById("hackathonCards");
+                    const noHackathonsMessage = document.getElementById("noHackathons");
+                    hackathonCards.innerHTML = '';  // Clear the existing cards
+
+                    if (hackathons.length === 0) {
+                        noHackathonsMessage.style.display = "block";
+                    } else {
+                        noHackathonsMessage.style.display = "none";
+                        // Loop through the hackathon data and create cards
+                        hackathons.forEach(hackathon => {
+                            const card = document.createElement("div");
+                            card.classList.add("col-md-4");
+
+                            card.innerHTML = `
+                                <div class="card">
+                                    <img src="${hackathon.image}" class="card-img-top" alt="Hackathon Image">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${hackathon.title}</h5>
+                                        <p class="card-text">${hackathon.description}</p>
+                                        <p class="card-text"><strong>Date:</strong> ${hackathon.date}</p>
+                                        <p class="card-text"><strong>Location:</strong> ${hackathon.location}</p>
+                                        <a href="#" class="btn btn-primary">Learn More</a>
+                                    </div>
+                                </div>
+                            `;
+                            
+                            hackathonCards.appendChild(card);  // Append the card to the container
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching the hackathons data:', error);
+                    const noHackathonsMessage = document.getElementById("noHackathons");
+                    noHackathonsMessage.style.display = "block";
+                    noHackathonsMessage.textContent = "Sorry, there was an error loading the hackathons.";
+                });
+        }
+
+        // Fetch hackathon data once the page is loaded
+        document.addEventListener("DOMContentLoaded", fetchHackathons);
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
